@@ -1,0 +1,32 @@
+<h1 style="text-align: center">Bonjour le monde !</h1>
+<p style="text-align: center">Bienvenue sur ce petit blog à la con </p>
+<p style="text-align: center">Ici vous trouverez un listing de nos articles.</p>
+<% if (user_signed_in?) %>
+<p style="text-align: center">Pour plus de détails, cliquez sur le titre.</p>
+<% end %>
+<% if !(user_signed_in?) %>
+<p style="text-align: center">Si rien ne s'affiche :  <%= link_to 'Connectez-vous !', new_user_registration_path %></p>
+<% end %>
+
+
+<% if (user_signed_in?) %>
+
+<h2 style="margin: 50px">Listing articles</h2>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+<% @articles.each do |article| %>
+    <tr>
+      <td><strong><%= link_to article.title, article %></strong></td>
+      <td><%= article.content %></td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Article', new_article_path %>
+
+<% end %>
+
